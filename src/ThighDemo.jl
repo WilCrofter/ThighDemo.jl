@@ -1,5 +1,5 @@
 module ThighDemo
 
-# package code goes here
+include("phantomio.jl")
 
 end # module
