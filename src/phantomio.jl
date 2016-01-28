@@ -9,7 +9,8 @@ function readPhantom(pixel_size::Int)
     end
     path = joinpath(Pkg.dir("ThighDemo"), "data",
                     "thigh_"*string(pixel_size)*".txt");
-    readdlm(path, ',', Int);
+    # return transpose to facilitate plotting
+    readdlm(path, ',', Int)';
 end
 
 """
@@ -42,20 +43,14 @@ tissue_types = Dict(
               11 => "Bone marrow");
 
 """
-Convert pixel ID's to inverse speeds (slowness), leaving the input array intact.
+Given an Int matrix of pixel ID's, return a Float64 matrix of inverse speeds (slowness).
 """
 function id2slowness(M::Array{Int, 2})
-    id2slowness!(deepcopy(M))
-end
-
-"""
-Convert pixel ID's to inverse speeds (slowness) in place, changing the input array.
-"""
-function id2slowness!(M::Array{Int, 2})
+    V = Array{Float64}(size(M));
     for i in size(M)[1]
         for j in size(M)[2]
-            M[i,j] = 1/speed[M[i,j]];
+            V[i,j] = 1/speeds[M[i,j]];
         end
     end
-    M
 end
+
