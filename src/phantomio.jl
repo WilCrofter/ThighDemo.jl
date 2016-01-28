@@ -11,3 +11,51 @@ function readPhantom(pixel_size::Int)
                     "thigh_"*string(pixel_size)*".txt");
     readdlm(path, ',', Int);
 end
+
+"""
+Speed of sound (m/s) for thigh tissue types
+"""
+speeds = Dict(
+              0 => 1540.0, # PAA gel
+              3 => 1562.0, # White matter
+              4 => 1450.0, # Fat
+              5 => 1585.0, # Muscle
+              6 => 1660.0, # Muscle/skin
+              7 => 2845.0, # Bone
+              8 => 1584.0, # Vessels
+              9 => 1522.0, # Around fat
+              11 => 1540.0); # Bone marrow
+
+
+"""
+Proper names for tissue types
+"""
+tissue_types = Dict(
+              0 => "PAA gel",
+              3 => "White matter",
+              4 => "Fat",
+              5 => "Muscle",
+              6 => "Muscle/skin",
+              7 => "Bone",
+              8 => "Vessels",
+              9 => "Around fat",
+              11 => "Bone marrow");
+
+"""
+Convert pixel ID's to inverse speeds (slowness), leaving the input array intact.
+"""
+function id2slowness(M::Array{Int, 2})
+    id2slowness!(deepcopy(M))
+end
+
+"""
+Convert pixel ID's to inverse speeds (slowness) in place, changing the input array.
+"""
+function id2slowness!(M::Array{Int, 2})
+    for i in size(M)[1]
+        for j in size(M)[2]
+            M[i,j] = 1/speed[M[i,j]];
+        end
+    end
+    M
+end
