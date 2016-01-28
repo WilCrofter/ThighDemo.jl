@@ -2,10 +2,10 @@ using ThighDemo
 using Base.Test
 
 function test_readPhantom()
-    @test size(ThighDemo.readPhantom(1)) == (51, 48);
-    @test size(ThighDemo.readPhantom(2)) == (104, 99);
-    @test size(ThighDemo.readPhantom(3)) == (211, 200);
-    @test size(ThighDemo.readPhantom(4)) == (424, 403);
+    @test size(ThighDemo.readPhantom(1)) == (48, 51);
+    @test size(ThighDemo.readPhantom(2)) == (99, 104);
+    @test size(ThighDemo.readPhantom(3)) == (200, 211);
+    @test size(ThighDemo.readPhantom(4)) == (403, 42);
     @test_throws ErrorException ThighDemo.readPhantom(5);
 end
 

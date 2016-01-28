@@ -9,8 +9,7 @@ function readPhantom(pixel_size::Int)
     end
     path = joinpath(Pkg.dir("ThighDemo"), "data",
                     "thigh_"*string(pixel_size)*".txt");
-    # return transpose to facilitate plotting
-    readdlm(path, ',', Int)';
+    readdlm(path, ',', Int);
 end
 
 """
@@ -54,3 +53,17 @@ function id2slowness(M::Array{Int, 2})
     end
 end
 
+"""
+Rectangular section A of phantom thigh. A rectangular section, is defined by the coordinates of its four corners and specifies the positions of two contralateral probes. Corners are listed in counter-clockwise order from the upper left. Probe coordinates can be calculated using function `GenS.probPos`.
+"""
+section_A = [8.243810336540204  91.17893727910730;
+             16.075381869743303  31.69224559667868;
+             190.887988558032134  54.70676187695501;
+             183.056417024829045 114.19345355938363];
+"""
+Rectangular section B of phantom thigh.
+"""
+section_B = [52.10302297389187  15.380882068250578;
+             108.48458022104636  -5.140326531289552;
+             171.08420521598575 166.850729608633742;
+             114.70264796883131 187.371938208173901];
