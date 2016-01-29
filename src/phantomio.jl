@@ -13,6 +13,11 @@ function readPhantom(pixel_size::Int)
 end
 
 """
+Gridsizes corresponding to the 4 pixel sizes
+"""
+gridsizes = [8*0.47, 4*0.47, 2*0.47, 0.47];
+
+"""
 Speed of sound (m/s) for thigh tissue types
 """
 speeds = Dict(
@@ -67,3 +72,4 @@ section_B = [52.10302297389187  15.380882068250578;
              108.48458022104636  -5.140326531289552;
              171.08420521598575 166.850729608633742;
              114.70264796883131 187.371938208173901];
+    
